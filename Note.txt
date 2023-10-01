@@ -1,1 +1,10 @@
+/*
+  Start env django
+  - Vào cùng thư mục folder env (có thể đổi tên khác)
+  - Open(Run with) env: env\Scripts\activate.bat
+  - Muốn thoát (env): deactivate
+  - Rồi cài đặt (run) django bình thường
+*/
+Source: https://github.com/SteinOveHelset/wey/tree/main
+
 14:00 Video2
