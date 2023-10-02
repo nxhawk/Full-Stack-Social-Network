@@ -4,7 +4,21 @@
   - Open(Run with) env: env\Scripts\activate.bat
   - Muốn thoát (env): deactivate
   - Rồi cài đặt (run) django bình thường
+
+  - Mở shell: python manage.py shell
+  - Thoát shell: Ctrl + Z
 */
 Source: https://github.com/SteinOveHelset/wey/tree/main
+Creating a Custom User Management System in Django: https://reintech.io/blog/creating-a-custom-user-management-system-in-django
 
-14:00 Video2
+email: nxhawk@gmail.com
+pass: NhatHao123@@
+
+email: haonhat2729@gmail.com
+pass: THCSthaivannam12345@@
+
+super-user
+email: nhathao@gmail.com
+pass: 12345NhatHao@@
+
+Video4
