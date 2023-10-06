@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import SignupView from "../views/SignupView.vue";
 import LoginView from "../views/LoginView.vue";
 import FeedView from "../views/FeedView.vue";
+import ProfileView from "../views/ProfileView.vue";
 import MessagesView from "../views/MessagesView.vue";
 import SearchView from "../views/SearchView.vue";
 
@@ -28,6 +29,11 @@ const router = createRouter({
       path: "/feed",
       name: "feed",
       component: FeedView,
+    },
+    {
+      path: "/profile/:id",
+      name: "profile",
+      component: ProfileView,
     },
     {
       path: "/messages",

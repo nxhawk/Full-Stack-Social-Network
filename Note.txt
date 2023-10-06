@@ -17,6 +17,10 @@ pass: NhatHao123@@
 email: haonhat2729@gmail.com
 pass: THCSthaivannam12345@@
 
+email: thanhnhan123@gmail.com
+pass: 12345ASDFG@@
+
+
 super-user
 email: nhathao@gmail.com
 pass: 12345NhatHao@@
