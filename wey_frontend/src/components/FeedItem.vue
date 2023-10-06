@@ -10,7 +10,9 @@
         <RouterLink
           :to="{ name: 'profile', params: { id: post.created_by.id } }"
         >
-          {{ post.created_by.name }}
+          <strong>
+            {{ post.created_by.name }}
+          </strong>
         </RouterLink>
       </p>
     </div>
@@ -61,7 +63,11 @@
           />
         </svg>
 
-        <span class="text-gray-500 text-xs">0 comments</span>
+        <RouterLink
+          :to="{ name: 'postview', params: { id: post.id } }"
+          class="text-gray-500 text-xs"
+          >{{ post.comments_count }} comments</RouterLink
+        >
       </div>
     </div>
     <div>
