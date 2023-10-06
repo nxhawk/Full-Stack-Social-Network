@@ -7,8 +7,31 @@
           <strong>{{ user.name }}</strong>
         </p>
         <div class="mt-6 flex space-x-8 justify-around">
-          <p class="text-xs text-gray-500">182 friends</p>
+          <RouterLink
+            :to="{ name: 'friends', params: { id: user.id } }"
+            class="text-xs text-gray-500"
+          >
+            {{ user.friends_count }} friends</RouterLink
+          >
           <p class="text-xs text-gray-500">120 posts</p>
+        </div>
+
+        <div class="mt-6">
+          <button
+            class="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg"
+            v-if="userStore.user.id !== user.id"
+            @click="sendFriendshipRequest"
+          >
+            Send friendship request
+          </button>
+
+          <button
+            class="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg"
+            @click="logout"
+            v-if="userStore.user.id === user.id"
+          >
+            Log out
+          </button>
         </div>
       </div>
     </div>
@@ -67,6 +90,7 @@ import axios from "axios";
 import PeopleYouMayKnow from "../components/PeopleYouMayKnow.vue";
 import Trends from "../components/Trends.vue";
 import { useUserStore } from "@/stores/user";
+import { useToastStore } from "@/stores/toast";
 import FeedItem from "../components/FeedItem.vue";
 
 export default {
@@ -74,9 +98,11 @@ export default {
 
   setup() {
     const userStore = useUserStore();
+    const toastStore = useToastStore();
 
     return {
       userStore,
+      toastStore,
     };
   },
 
@@ -91,6 +117,7 @@ export default {
       posts: [],
       user: {},
       body: "",
+      can_send_friendship_request: null,
     };
   },
 
@@ -141,6 +168,36 @@ export default {
         .catch((error) => {
           console.log("error", error);
         });
+    },
+
+    sendFriendshipRequest() {
+      axios
+        .post(`/api/friends/${this.$route.params.id}/request/`)
+        .then((response) => {
+          this.can_send_friendship_request = false;
+          console.log(response.data.message);
+          if (response.data.message == "request already sent")
+            this.toastStore.showToast(
+              5000,
+              "The request has already been sent!",
+              "bg-red-300"
+            );
+          else
+            this.toastStore.showToast(
+              5000,
+              "The request was sent!",
+              "bg-emerald-300"
+            );
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    },
+
+    logout() {
+      this.userStore.removeToken();
+
+      this.$router.push("/login");
     },
   },
 };
