@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 from .forms import PostForm
-from .models import Post
+from .models import Post, Like
 from .serializers import PostSerializer
 
 from account.models import User
@@ -48,4 +48,18 @@ def post_create(request):
   else:
     return JsonResponse({'error': 'add somehting here later!...'})
   
+
+@api_view(['POST'])
+def post_like(request, pk):
+  post = Post.objects.get(pk=pk)
+
+  if not post.likes.filter(created_by=request.user):
+    like = Like.objects.create(created_by = request.user)
+    post.like_count = post.like_count + 1
+    post.likes.add(like)
+    post.save()
+
+    return JsonResponse({'message': 'like created'})
+  
+  return JsonResponse({"message":"post already liked"})
 
