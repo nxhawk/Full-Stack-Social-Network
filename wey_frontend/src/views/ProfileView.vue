@@ -33,6 +33,14 @@
             Send direct message
           </button>
 
+          <RouterLink
+            class="inline-block py-4 px-3 bg-purple-600 text-xs text-white rounded-lg mr-2"
+            to="/profile/edit"
+            v-if="userStore.user.id === user.id"
+          >
+            Edit profile
+          </RouterLink>
+
           <button
             class="inline-block py-4 px-3 bg-red-600 text-xs text-white rounded-lg"
             @click="logout"
@@ -100,6 +108,7 @@ import Trends from "../components/Trends.vue";
 import { useUserStore } from "@/stores/user";
 import { useToastStore } from "@/stores/toast";
 import FeedItem from "../components/FeedItem.vue";
+import { RouterLink } from "vue-router";
 
 export default {
   name: "ProfileView",
@@ -118,6 +127,7 @@ export default {
     PeopleYouMayKnow,
     Trends,
     FeedItem,
+    RouterLink,
   },
 
   data() {
